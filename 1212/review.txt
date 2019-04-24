@@ -1,0 +1,19 @@
+list:
+    insert: append(), insert(), extend(iterable)
+    delete: remove,  pop, clear, del
+    update: li[index] = '', li[slice] ='',
+    select: li[index], for
+    methods:
+            len(),sort(reverse=True), reverse, count(), index('')
+
+    ps:
+    join: list --> str
+        ''.join(iterable)
+    splite: str --> list
+
+tuple:
+    only can select, son cannot be changed, but grandson maybe can chaned.
+
+range():
+    range(0,10,1)
+    range(10,0,-1)
