@@ -10,7 +10,7 @@ print(time.localtime())
 print(time.gmtime())
 print(time.localtime(t))
 print(time.localtime(1500000000))
-print(time.mktime(time.localtime()))
+print(time.mktime(time.localtime())) # struc_time --> timestamp
 
 # 结构化时间转成字符串格式化时间
 print(time.strptime('2019-11-11', '%Y-%m-%d'))
@@ -21,3 +21,9 @@ print(time.strftime('%Y-%m-%d', time.localtime(1500000000)))
 #结构换时间、时间戳时间转成%a %b %c %H:%M:%S 串, asctime, ctime
 print(time.asctime(time.localtime()))  # 结构化时间转换用asctime
 print(time.ctime(time.time()))         # 时间戳时间转换用ctime
+
+# 总结
+# strtime --(strptime)--> struct_time --(mktime)--> timestamp
+# strtime <--(strftime)-- struct_time <--(localtime)-- timestamp
+# struct_time --(asctime)--> chuan_time
+# timestamp --(ctime)--> chuan_time
