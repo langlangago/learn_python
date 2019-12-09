@@ -51,17 +51,10 @@
 # print(f1.func)
 # print(Foo.func)
 
-# 包，__init__, 导入包的时候会执行__initi__文件。
+# 包，__init__, 导入包的时候会执行__init__文件。
 # import package , 类似于类的实例化
 # import time
 # time.time()
-
-
-
-
-
-
-
 
 
 
