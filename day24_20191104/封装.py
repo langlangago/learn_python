@@ -16,7 +16,7 @@ class Person:
 
 alex = Person('alex', 'alex123')
 print(alex.__dict__)
-print(alex._Person__password) #_类名_属性名
+print(alex._Person__password) #_类名__属性名
 print(alex.login())
 
 # 所有的私有 都是在变量的左边加上双下划綫
