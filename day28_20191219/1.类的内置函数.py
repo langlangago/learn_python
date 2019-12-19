@@ -43,23 +43,72 @@
 # example: 设计模式--单例模式，用__new__自己实现
 # 单例模式，一个类始终只实例化一个对象，后面再实例化拿到的还是同一个对象
 # 后面实例化之后的操作，是在第一次实例化对象的基础上进行。
+# class A:
+#     __instance = False
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#     def __new__(cls, *args, **kwargs):
+#         if cls.__instance:
+#             return cls.__instance
+#         cls.__instance =  object.__new__(cls)
+#         return cls.__instance
+#
+# alex = A('alex', 35)
+# alex.cloth = '小花袄'
+# print(alex.__dict__)
+# tom = A('tom', 28)
+# print(tom.__dict__)
+
+# # __eq__ ,自己定义 == 判断的依据，默认是比较内存地址
+# class A:
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#     def __eq__(self, other):
+#         if self.age == other.age:
+#             return True
+#         else:
+#             return False
+#
+# a = A('alex', 22)
+# b = A('alex', 22)
+# print(a == b)
+# 如果自己未实现__eq__方法，这里会默认调用object.__eq__
+# 比较内存地址，结果为False；自己实现了__eq__,结果就为True
+
+# __hash__，hash()的调用实现，计算对象的hash值
+# 默认有一些数据类型不可hash，但你可以自己实现__hash__让他可hash
+
 class A:
-    __instance = False
-    def __init__(self, name, age):
+    def __init__(self, name, sex, age):
         self.name = name
+        self.sex = sex
         self.age = age
+    def __hash__(self):
+       # 调用父类object的hash方法实现hash值，计算可hash类型的hash值
+        return hash(self.name + self.sex)
 
-    def __new__(cls, *args, **kwargs):
-        if cls.__instance:
-            return cls.__instance
-        cls.__instance =  object.__new__(cls)
-        return cls.__instance
+a = A('alex', 'male', 22)
+b = A('alex', 'male', 25)
+print(hash(a))  # 使用自定义的hash方法（__hash__）
+print(hash(b))  # a。b两个属性不同的对象，hash值一样
 
-alex = A('alex', 35)
-alex.cloth = '小花袄'
-print(alex.__dict__)
-tom = A('tom', 28)
-print(tom.__dict__)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
