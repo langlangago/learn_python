@@ -93,10 +93,6 @@ class MyServer(socketserver.BaseRequestHandler):
             passwd_len = struct.unpack('i', passwd_len)[0]
             passwd = self.request.recv(passwd_len).decode('utf-8')
             p = Person(name, passwd)
-
-            # name = input('登录：请输入用户名:>>>')
-            # passwd = input('登录：请输入密码:>>>')
-            # p = Person(name, passwd)
             p.sign_in()
         elif ret[0] == 2:
             p.sign_up()
@@ -124,8 +120,42 @@ class MyServer(socketserver.BaseRequestHandler):
             with open(head_dict['filename'], 'rb') as f:
                 for line in f:
                     md5.update(line)
-            print(md5.hexdigest())
+                position = f.tell()
+            md5_server = md5.hexdigest()
+            md5_client = self.request.recv(32).decode('utf-8')
+            if md5_server == md5_client:
+                print('文件已存在，一致性校验成功，取消此次上传')
+                msg = '文件已存在，一致性校验成功，取消此次上传'
+                self.request.send(msg.encode('utf-8'))
+                self.request.send('2'.encode('utf-8'))
+            else:
+                print('文件已存在，一致性校验失败，开始断点续传')
+                msg = '文件已存在，一致性校验失败，开始断点续传'
+                self.request.send(msg.encode('utf-8'))
+                self.request.send('3'.encode('utf-8'))
+                num = struct.pack('i', len(str(position)))
+                self.request.send(num)
+                self.request.send(str(position).encode('utf-8'))
 
+                buffer = 4096
+                filesize = position
+                with open(head_dict['filename'], 'ab') as f:
+                    while True:
+                        if filesize < head_dict['filesize']:
+                            content = self.request.recv(buffer)
+                            md5.update(content)
+                            f.write(content)
+                            filesize += len(content)
+                        else:
+                            break
+                md5_server = md5.hexdigest()
+                md5_client = self.request.recv(32).decode('utf-8')
+                if md5_server == md5_client:
+                    msg = '文件一致性校验正确，上传成功'
+                    self.request.send(msg.encode('utf-8'))
+                else:
+                    msg = '文件一致性校验错误，上传失败'
+                    self.request.send(msg.encode('utf-8'))
         else:
             print('文件不存在')
             msg = '文件不存在'

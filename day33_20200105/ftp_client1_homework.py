@@ -88,7 +88,42 @@ ret = sk.recv(15)
 print(ret.decode('utf-8'))
 status = int(sk.recv(1).decode('utf-8'))
 if status == 1:
-   pass
+    # 计算md5值，并传送到服务端对比
+    md5 = hashlib.md5()
+    with open(file, 'rb') as f:
+        for line in f:
+            md5.update(line)
+    sk.send(md5.hexdigest().encode('utf-8'))
+
+    ret2 = sk.recv(60)
+    print(ret2.decode('utf-8'))
+    status2 = int(sk.recv(1).decode('utf-8'))
+    if status2 == 2:
+        print('我是状态2，我没事做，要退出了')
+    elif status2 == 3:
+        # 断点续传，接收到断点的位置
+        num = sk.recv(4)
+        position_len = struct.unpack('i', num)[0]
+        position = int(sk.recv(position_len).decode('utf-8'))
+        with open(file, 'rb') as f:
+            buffer = 4096
+            f.seek(position)
+            total = filesize
+            filesize -= position
+            while True:
+                if filesize >= buffer:
+                    content = f.read(buffer)
+                    sk.send(content)
+                    filesize -= buffer
+                    processBar(filesize, total)
+                else:
+                    content = f.read(filesize)
+                    sk.send(content)
+                    processBar(filesize, total)
+                    break
+            processBar(0, 100)
+        sk.send(md5.hexdigest().encode('utf-8'))
+        print(sk.recv(42).decode('utf-8'))
 else:
     # 发送文件，一遍读，一遍计算md5，一遍发送
     print('开始上传文件')
@@ -113,6 +148,5 @@ else:
 
     sk.send(md5.hexdigest().encode('utf-8'))
     print(sk.recv(42).decode('utf-8'))
-
 
 sk.close()
