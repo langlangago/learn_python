@@ -1,4 +1,2 @@
-alex|123456
-tom|123456
-lilei|123456
-huahua|123123
+alex|6bca2a040ef070eaace720522cb99ede
+tom|6bca2a040ef070eaace720522cb99ede
