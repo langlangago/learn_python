@@ -1,0 +1,21 @@
+/*组合选择器示例*/
+
+/*后代选择器*/
+/*
+#d1 p {color: red;}
+*/
+/*儿子选择器*/
+/*#d1>p {color: blue;}*/
+
+/*毗邻选择器(同级标签)*/
+/*div+p {color: green;}*/
+
+/*弟弟选择器(哥哥下面的所有弟弟标签，同级)*/
+/*div~p {color: yellow;}*/
+
+/*属性选择器示例*/
+/*p[title] {color: red;}*/
+/*p[title="good"] {color: red;}*/
+
+/*分组和嵌套*/
+div,p {color: red; font-size: 24px; text-align: center}

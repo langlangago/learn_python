@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Form表单</title>
+</head>
+<body>
+<!--form 一般用post，enctype；muti文件要用-->
+    <form action="url" method="post" enctype="multipart/form-data">
+        <p>
+            姓名：
+            <input name="username" type="text" readonly value="郎晓伟">
+            <input name="username" type="text" placeholder="郎晓伟" disabled>
+        </p>
+        <p>
+            <label for="n1">姓名2：</label>
+            <input id="n1" name="username" type="text" readonly value="郎晓伟">
+        </p>
+        <p>
+            密码：
+            <input name="password" type="password">
+        </p>
+        <p>
+            <input name="hidden" type="hidden">
+        </p>
+        <p>
+            性别：
+            <input name="gander" type="radio" value="1"> 男
+            <input name="gander" type="radio" value="0"> 女
+            <input checked name="gander" type="radio" value="2"> 保密
+        </p>
+        <p>
+            性别2：
+            <label>男
+                <input name="gander" type="radio" value="1">
+            </label>
+            <label>女
+                <input name="gander" type="radio" value="0">
+            </label>
+            <label>
+                保密
+                <input checked name="gander" type="radio" value="2">
+            </label>
+        </p>
+        <p>
+            爱好：
+            <input checked name="hobby" type="checkbox" value="football">足球
+            <input name="hobby" type="checkbox" value="basketball">蓝球
+            <input name="hobby" type="checkbox" value="pingpangball">乒乓球
+        </p>
+        <p>
+            家乡：
+            <select name="form1" id="f1">
+                <option name="beijing">北京</option>
+                <option selected>上海</option>
+                <option>深圳</option>
+                <option>广州</option>
+            </select>
+            <select name="form3" id="f3" multiple>
+                <option name="beijing">北京</option>
+                <option >上海</option>
+                <option>深圳</option>
+                <option>广州</option>
+            </select>
+        </p>
+        <p>
+            居住地：
+            <select name="form2" id="f2">
+                <optgroup label="北京">
+                    <option name="changping">昌平</option>
+                    <option>海淀</option>
+                    <option>朝阳</option>
+                </optgroup>
+                <optgroup label="上海">
+                    <option>闽行</option>
+                    <option>浦东</option>
+                    <option>浦西</option>
+                </optgroup>
+                <optgroup label="广州">
+                    <option>天河</option>
+                    <option>白云</option>
+                    <option>越秀</option>
+                </optgroup>
+            </select>
+        </p>
+        <p>
+            出生日期：
+            <input name="birthday" type="date">
+        </p>
+        <p>
+            上传文件：
+            <input name="file" type="file">
+        </p>
+        <p>
+            邮箱:
+            <input name="email" type="email">
+        </p>
+        <textarea name="info">自我简介</textarea>
+        <p>
+            <input type="submit">
+            <input type="button">
+            <input type="reset">
+        </p>
+    </form>
+
+</body>
+</html>

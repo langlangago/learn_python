@@ -1,0 +1,6 @@
+/*标签选择器*/
+p {color: red; font-size: 48px}
+/*ID选择器*/
+#p2 {color: black}
+/*类选择器，用的最多*/
+.c1 {color:yellow}

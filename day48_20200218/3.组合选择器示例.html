@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="index3.css">
+    <!--选择器的优先级
+        1.内联样式选择器（在标签内部的style）优先级最高
+        2.选择器一样的情况下，谁靠近标签谁的优先级就越高
+        3.选择器不一样的情况下，按照权重比较：内联样式1000，id选择器100，类选择器10，元素选择器1
+        权重计算，累加不进位-->
+    <title>组合选择器示例</title>
+</head>
+<body>
+<!--内联样式-->
+<div id="d1">
+    <p>我是嵌套在div中的p标签</p>
+    <span>我是嵌套在div中的span标签</span>
+    <div>
+        <p>我是嵌套在div的div中的p标签</p>
+        <span>我是嵌套在div的div中的span标签</span>
+    </div>
+    <hr>
+    <div>我是毗邻标签的div标签</div>
+    <p>我是毗邻标签的p标签</p>
+    <p>我还是弟弟选择器的p标签</p>
+    <p>我还是弟弟选择器的p标签</p>
+    <hr>
+    <p title="hao">我是属性选择器的p标签</p>
+    <p title="good">我也是是属性选择器的p标签</p>
+
+</div>
+</body>
+</html>
