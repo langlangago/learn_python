@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Z-index-used-in-login</title>
+<!--借助两个index，完美的完成了遮罩和登录框的显示，一个999，一个1000-->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-image: url("http://image.biaobaiju.com/uploads/20181111/20/1541940410-gKtAaIOSmd.jpg");
+        }
+        .c1{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-color: rgba(128,128,128,0.9);
+            z-index: 999;
+
+        }
+        .c2 {
+            width: 400px;
+            height: 300px;
+            background-color: white;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin-top: -150px;
+            margin-left: -200px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+<div class="c1"></div>
+<div class="c2">Please Login or Registe</div>
+</body>
+</html>

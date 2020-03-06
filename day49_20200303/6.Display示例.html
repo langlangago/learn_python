@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DisPlay-Example</title>
+    <style>
+        .c1 {
+            background-color: red;
+            height: 200px;
+            /*隐藏，或者转换块级标签和内敛标签*/
+            /*display: none;*/
+            display: inline;
+        }
+        .c2 {
+            background-color: green;
+            display: block;
+        }
+        li {
+            list-style-type: none;
+            display: inline;
+            /*padding-right: 10px;*/
+            /*padding-left: 10px;*/
+            border-right: 2px solid #424242;
+        }
+        li.last {
+            border-right: none;
+        }
+
+        a {
+            padding: 10px;
+            text-decoration: none;
+            color: #b0b0b0;
+        }
+    </style>
+</head>
+<body>
+<div class="c1">DIV</div>
+<span class="c2">Span1</span>
+<span class="c2">Span2</span>
+
+<ul>
+    <li><a href="">玉米商城</a></li>
+    <li><a href="">电脑</a></li>
+    <li><a href="">手机</a></li>
+    <li class="last"><a href="">小米</a></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,18 @@
+* {
+    font-size: 30px;
+    font-family: "SimSun-ExtB", "Microsoft YaHei UI";
+    color: red;
+}
+
+.c1 {
+    font-weight: bold;
+    color: #000000;
+}
+
+.c2 {
+    text-align: justify;
+}
+
+a {
+    text-decoration: none;
+}

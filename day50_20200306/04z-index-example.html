@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Z-index-example</title>
+    <style>
+       /*z-index设置Z轴的值，值越大离你越近。前提这个元素必须定位过*/
+        .c1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: relative;
+            z-index: 1000;
+        }
+        .c2 {
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="c1"></div>
+<div class="c2"></div>
+
+</body>
+</html>

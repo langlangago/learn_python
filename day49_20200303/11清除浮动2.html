@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ClearFix</title>
+<!--    清除浮动，就是，清除浮动带来的后遗症-覆盖-->
+    <style>
+        #d1 {
+            border: 1px solid red;
+        }
+        .c1 {
+            width: 80px;
+            height: 80px;
+            border: 1px solid black;
+            float: right;
+        }
+        .c2 {
+            height: 200px;
+            border: 1px solid green;
+        }
+        /*模拟空的div，用于防止父标签塌陷*/
+        /*自定义类，所有清除浮动的标签都可以引用*/
+        .clearfix:after {
+            content: "";
+            clear: both;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="d1" class="clearfix">
+    <div class="c1"></div>
+    <div class="c1"></div>
+    <div class="c1"></div>
+    <div class="c1"></div>
+</div>
+<div class="c2">I am the real content.</div>
+</body>
+</html>
