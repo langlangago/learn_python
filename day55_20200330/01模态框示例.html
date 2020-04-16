@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模态框示例</title>
+    <style>
+        .cover {
+            background-color: rgba(0, 0, 0, 0.4);
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+        }
+
+        .modal {
+            width: 300px;
+            height: 200px;
+            background-color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -150px;
+            margin-top: -100px;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<button id="b1">Click Me To Login</button>
+<div class="cover hide"></div>
+<div class="modal hide">
+    <form action="">
+        <div><label>Username:<input type="text"></label></div>
+        <div><label>Password:<input type="password"></label></div>
+        <label><input type="submit" value="Login"></label>
+        <label><input type="submit" value="Cancel" id="cancel"></label>
+    </form>
+</div>
+<script src="jquery-3.4.1.min.js"></script>
+<script>
+    $("#b1").click(function () {
+        $(".cover").removeClass("hide");
+        $(".modal").removeClass("hide");
+    })
+    $("#cancel").click(function () {
+        $(".modal").addClass("hide");
+        $(".cover").addClass("hide");
+    })
+</script>
+</body>
+</html>

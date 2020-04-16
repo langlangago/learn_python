@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>点击按钮表格增加一行</title>
+</head>
+<body>
+<table border="1" class="t1">
+    <thead>
+    <tr>
+        <td>编号</td>
+        <td>姓名</td>
+        <td>爱好</td>
+        <td>操作</td>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>李磊</td>
+            <td>篮球</td>
+            <td><button class="bu1">删除</button></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>韩梅梅</td>
+            <td>话剧</td>
+            <td><button class="bu1">删除</button></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>路飞</td>
+            <td>打架</td>
+            <td><button class="bu1">删除</button></td>
+        </tr>
+    </tbody>
+</table>
+<button class="b1">增加一行</button>
+<p>
+<a href="https://www.sogo.com">sogo</a>
+<a href="https://www.sogo.com">sogo</a>
+<button class="bu2">点我替换</button>
+</p>
+<p>
+    <button class="bu3">屠龙宝刀，点击就送！</button>
+</p>
+<script src="jquery-3.4.1.min.js"></script>
+<script>
+    $(".b1").click(function () {
+        var trEle = document.createElement("tr");
+        $(trEle).html("<td>4</td><td>二哥</td><td>社会摇</td><td><button class='bu1'>删除</button></td>");
+      $(".t1").find("tbody").append(trEle);
+    });
+    //$(".bu1").click(function () {
+    // 事件委托，适用于给未来的元素绑定事件。即页面刷新时没有后来添加的元素
+    $("tbody").on("click", ".bu1", function () {
+            //console.log($(this).parent().parent());
+            $(this).parent().parent().remove();
+        });
+    $(".bu2").click(function () {
+        var imgEle = document.createElement('img');
+        $(imgEle).attr('src', 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2564614929,574127082&fm=11&gp=0.jpg');
+        $("a").replaceWith(imgEle);
+    });
+    $(".bu3").click(function () {
+        $(this).clone(true).insertAfter(this);
+    })
+
+</script>
+
+
+
+
+
+</body>
+</html>

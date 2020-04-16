@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQuery增删改示例</title>
+    <style>
+        .cover {
+            background-color: rgba(0, 0, 0, 0.4);
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+        }
+
+        .modal {
+            width: 300px;
+            height: 200px;
+            background-color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -150px;
+            margin-top: -100px;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<button id="create">新增</button>
+<table border="1">
+    <thead align="center">
+    <tr>
+        <td>#</td>
+        <td>姓名</td>
+        <td>爱好</td>
+        <td>操作</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1</td>
+        <td>于谦</td>
+        <td>抽烟喝酒</td>
+        <td>
+            <button class="update">修改</button>
+            <button class="delete">删除</button>
+        </td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>小岳岳</td>
+        <td>耍贱卖萌</td>
+        <td>
+            <button class="update">修改</button>
+            <button class="delete">删除</button>
+        </td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>郭德纲</td>
+        <td>说相声</td>
+        <td>
+            <button class="update">修改</button>
+            <button class="delete">删除</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="cover hide"></div>
+<div class="modal hide">
+    <form action="">
+        <p class="hide"><label>编号:<input type="text" id="num"></label></p>
+        <p><label>姓名:<input type="text" id="name"></label></p>
+        <p><label>爱好:<input type="text" id="hobby"></label></p>
+        <label><input type="submit" value="提交" id="commit"></label>
+        <label><input type="submit" value="取消" id="cancel"></label>
+    </form>
+</div>
+<script src="jquery-3.4.1.min.js"></script>
+<script>
+    var num = 3;
+    var flag = true;
+    // create 只负责弹起遮罩，清空form表单
+    $("#create").on("click", function () {
+        num ++;
+        flag = true;
+        $(".cover").removeClass("hide");
+        $(".modal").removeClass("hide");
+        $("#id").val("");
+        $("#name").val("");
+        $("#hobby").val("");
+    });
+    // 修改按钮负责弹起遮罩，取到数据
+    $("tbody").on("click", ".update", function () {
+        flag = false;
+        $(".cover").removeClass("hide");
+        $(".modal").removeClass("hide");
+        var $currentTr = $(this).parent().siblings();
+        var currentNum = $currentTr[0].innerText;
+        var currentName = $currentTr[1].innerText;
+        var currentHobby = $currentTr[2].innerText;
+        $("#num").val(currentNum);
+        $("#name").val(currentName);
+        $("#hobby").val(currentHobby);
+    });
+    // 删除按钮，删除本行后，后面的所有兄弟行nextALl，序号减一然后自赋值
+    $("tbody").on("click", ".delete", function () {
+        //全局变量num -1 ,一遍后续增加行
+        num --;
+        // 删除本行，记录序号
+        var $thisTr = $(this).parent().parent();
+        var thisNum = $thisTr.find("td").first().text();
+        var $nextTrs = $thisTr.nextAll();
+        $thisTr.remove();
+        //后面所有兄弟tr，序号都减1，循环减1后自赋值
+        //$($nextTrs[0]).find("td").first().text(thisNum);
+        for(var i=0;i<$nextTrs.length;i++){
+            var lineNum = $($nextTrs[i]).find("td").first().text();
+            //console.log($nextTrs[i],lineNum);
+            $($nextTrs[i]).find("td").first().text(lineNum-1);
+        }
+    });
+    // 提交按钮负责保存数据，并增加一行
+    // 先判断是新增还是修改，然后做不同的动作。
+    // 新增就在最后新增加一行，修改就把数据填回原来的位置。
+    // 先修改数据，并保存到tbody.data，然后修改原来的行的数据
+    $("#commit").on("click", function () {
+        var name = $("#name").val();
+        var hobby = $("#hobby").val();
+        var $tbodyEle = $("tbody");
+        if (flag){
+            $tbodyEle.data(num.toString(), [name.toString(), hobby.toString()]);
+            var trEle = document.createElement('tr');
+            var nameTd = $tbodyEle.data(num.toString())[0];
+            var hobbyTd = $tbodyEle.data(num.toString())[1];
+            $(trEle).html("<td>"+num+"</td><td>"+nameTd+"</td><td>"+hobbyTd+"</td><td><button class='update'>修改</button><button class='delete'>删除</button></td>");
+            $tbodyEle.append(trEle);
+            $tbodyEle.removeData();
+            $(".cover").addClass("hide");
+            $(".modal").addClass("hide");
+        } else {
+            var currentNum = $("#num").val();
+            $tbodyEle.data("currentLine", [currentNum.toString(), name.toString(), hobby.toString()]);
+            var $trEles = $tbodyEle.find("tr");
+            for (var i=0;i<$trEles.length;i++){
+                var originNum = $($trEles[i]).children().first().text();
+                if(originNum === $tbodyEle.data("currentLine")[0]) {
+                    $($($trEles[i]).children()[1]).text($tbodyEle.data("currentLine")[1]);
+                    $($($trEles[i]).children()[2]).text($tbodyEle.data("currentLine")[2]);
+                }
+            }
+            $tbodyEle.removeData();
+            $(".cover").addClass("hide");
+            $(".modal").addClass("hide");
+        }
+        return false;
+    });
+    $("#cancel").on("click", function () {
+        $(".cover").addClass("hide");
+        $(".modal").addClass("hide");
+        return false;
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--实现搜索框里有默认值，获取焦点后自动消失，焦点离开如果值为空则复现-->
+    <meta charset="UTF-8">
+    <title>SearchBarExample</title>
+</head>
+<body>
+<label>
+    <input type="text" id="s1" value="Iphone 11 Max">
+    <button>Search</button>
+</label>
+<script>
+    //获取焦点后，清空输入框的value
+    var searchEle = document.getElementById("s1");
+    searchEle.onfocus = function () {
+        this.value = "";
+    };
+    //失去焦点后，如果输入框为空，则填入内容
+    searchEle.onblur = function () {
+        if(!this.value.trim())
+            this.value = "Iphone 11 Max";
+    }
+</script>
+</body>
+</html>

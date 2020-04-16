@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>属性操作</title>
+</head>
+<body>
+<img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2564614929,574127082&fm=11&gp=0.jpg" alt="">
+<input id="b1" type="submit" value="Next One">
+<label>
+    <input  name="hobby" type="checkbox" value="1">1
+    <input  name="hobby" type="checkbox" value="2">2
+</label>
+<script src="jquery-3.4.1.min.js"></script>
+<script>
+    newURL = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585589334241&di=f1f71c370e56356f5f75d9506fc68848&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fq_70%2Cc_zoom%2Cw_640%2Fimages%2F20190215%2F54af14fc9b674fa7ba1a2af35c346fdf.jpeg"
+    $("#b1").click(function () {
+        var $imgEles = $("img");
+        var oldURL = $imgEles.attr("src");
+        $imgEles.attr("src", newURL);
+        newURL = oldURL;
+    })
+</script>
+</body>
+</html>

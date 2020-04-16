@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>全选反选</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Num</th>
+            <th>Name</th>
+            <th>Job</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><label><input type="radio" value="1"></label></td>
+            <td>Tom</td>
+            <td>Teacher</td>
+        </tr>
+        <tr>
+            <td><label><input type="radio" value="2"></label></td>
+            <td>Jerry</td>
+            <td>Nurse</td>
+        </tr>
+        <tr>
+            <td><label><input type="radio" value="3"></label></td>
+            <td>Lilei</td>
+            <td>Student</td>
+        </tr>
+    </tbody>
+</table>
+<label><input type="submit" value="全选" id="all"></label>
+<label><input type="submit" value="反选" id="other"></label>
+<label><input type="submit" value="取消" id="cancel"></label>
+<script src="jquery-3.4.1.min.js"></script>
+<script>
+    // all select
+    $("#all").click(function () {
+        $(":radio").prop("checked", true);
+    });
+    // cancel selected, then select others
+    $("#other").click(function () {
+       var $radioEles = $(":radio");
+       for(var i=0;i<$radioEles.length;i++){
+           if ($($radioEles[i]).prop("checked")){
+               $($radioEles[i]).prop("checked", false);
+           } else {
+               $($radioEles[i]).prop("checked", true);
+           }
+       }
+    });
+    // cancel selected
+    $("#cancel").click(function () {
+        $(":radio").prop("checked", false);
+    });
+</script>
+</body>
+</html>

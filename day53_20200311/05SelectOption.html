@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--  Select联动，选择城市后，二级Select菜单自动填入城市的区(创造标签，填入内容)    -->
+    <meta charset="UTF-8">
+    <title>selectOptionExample</title>
+</head>
+<body>
+<label>
+<select name="city" id="s1">
+    <option value="0">Please Select City</option>
+    <option value="1">北京</option>
+    <option value="2">上海</option>
+</select>
+    <select name="zone" id="s2"></select>
+
+    <script>
+        //先定义一个数据字典，区和城市编号对应；
+        var zones = {1:["海淀","昌平","朝阳"], 2:["闵行","浦东","宝山"]};
+        //获取到两个Select元素
+        var s1Ele = document.getElementById("s1");
+        var s2Ele = document.getElementById("s2");
+        //定义一个onchange事件，绑定在第一个select上，即select1内容有变化 ，就执行匿名函数
+        s1Ele.onchange = function () {
+            //先清空select2的内容
+            s2Ele.innerHTML = "";
+            //把选择的城市名字，填充到select2的name中
+            s2.name = this.options.item(this.value).innerText;
+            //根据select1的value，获取区
+            zone = zones[this.value];
+            for(var i=0;i<zone.length;i++) {
+                //创建元素，添加内容和属性，加入到select2标签下
+                var optEle = document.createElement("option");
+                optEle.innerText = zone[i];
+                optEle.value = i.toString();
+                s2Ele.appendChild(optEle);
+            }
+        }
+    </script>
+</label>
+</body>
+</html>

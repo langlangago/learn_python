@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>位置属性</title>
+<!-- offset()相对于左上角的位置，position()相对于父标签的位置   -->
+<!-- 括号里没有值是查看，有值是设置   -->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .c1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        .c2 {
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+        .c3 {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<script src="jquery-3.4.1.min.js"></script>
+<div class="c1">Div C1</div>
+<div class="c2">
+    <div class="c3">Div C3 in Div C2</div>
+</div>
+</body>
+</html>

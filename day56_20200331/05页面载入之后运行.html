@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>页面载入之后运行</title>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        // 等DOM文档树准备就绪之后，才执行事件,安全起见绑定事件的开头都要加上。
+        $(document).ready(function () {
+            console.log($("div").text())
+        })
+    </script>
+</head>
+<body>
+<div>我是DIV</div>
+</body>
+</html>

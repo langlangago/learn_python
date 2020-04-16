@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>返回顶部示例</title>
+    <style>
+        div {
+            height: 150px;
+        }
+
+        .c1 {
+            width: 60px;
+            height: 60px;
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<div>4</div>
+<div>5</div>
+<div>6</div>
+<div>7</div>
+<div>8</div>
+<div>9</div>
+<div>10</div>
+<div>11</div>
+<div>12</div>
+<div>13</div>
+<div>14</div>
+<div>15</div>
+<div>16</div>
+<div>17</div>
+<div>18</div>
+<div>19</div>
+<div>20</div>
+<button id="b1" class="c1 hide">返回顶部</button>
+<script src="jquery-3.4.1.min.js"></script>
+<script>
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > 100) {
+            $("#b1").removeClass("hide");
+        } else {
+            $("#b1").addClass("hide");
+        }
+    });
+    $("#b1").click(function () {
+        $(window).scrollTop(0)
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>键盘点击事件</title>
+</head>
+<body>
+<table border="1" class="t1">
+    <thead>
+    <tr>
+        <td>编号</td>
+        <td>姓名</td>
+        <td>爱好</td>
+        <td>操作</td>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input type="checkbox" value="0"></td>
+            <td>李磊</td>
+            <td>篮球</td>
+            <td><select>
+                <option value="0">上线</option>
+                <option value="1">下线</option>
+                <option value="2">销户</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" value="1"></td>
+            <td>韩梅梅</td>
+            <td>话剧</td>
+            <td><select>
+                <option value="0">上线</option>
+                <option value="1">下线</option>
+                <option value="2">销户</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" value="2"></td>
+            <td>路飞</td>
+            <td>打架</td>
+            <td><select>
+                <option value="0">上线</option>
+                <option value="1">下线</option>
+                <option value="2">销户</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" value="3"></td>
+            <td>路飞</td>
+            <td>打架</td>
+            <td><select>
+                <option value="0">上线</option>
+                <option value="1">下线</option>
+                <option value="2">销户</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" value="4"></td>
+            <td>路飞</td>
+            <td>打架</td>
+            <td><select>
+                <option value="0">上线</option>
+                <option value="1">下线</option>
+                <option value="2">销户</option>
+            </select></td>
+        </tr>
+    </tbody>
+</table>
+<script src="jquery-3.4.1.min.js"></script>
+<script>
+    mode = false;
+    $("body").on("keydown", function (event) {
+        console.log(event.keyCode);
+        if(event.keyCode===17){
+            //检测到Ctrl键按下，进入批量操作模式
+            mode = true
+        }
+    });
+    $("body").on("keyup", function (event) {
+        console.log(event.keyCode);
+        if(event.keyCode===17){
+            //检测到Ctrl键松开，退出批量操作模式
+            mode = false
+        }
+    });
+    // 批量设置select的值，修改一个被选中项的select值，其他被选中项同时修改。
+    $("select").on("change", function () {
+        var $thisChecked = $(this).parent().siblings().first().find(":checked");
+        var value = $(this).val();
+        // console.log(value);
+        if($thisChecked.prop("checked") && mode) {
+            //真正进入批量操作模式
+            var $checkedEles = $("input[type='checkbox']:checked");
+            for (var i=0;i<$checkedEles.length;i++){
+                // console.log($($checkedEles[i]).parent().siblings().last().find("select"));
+                $($checkedEles[i]).parent().siblings().last().find("select").val(value);
+            }
+        }
+    });
+</script>
+</body>
+</html>

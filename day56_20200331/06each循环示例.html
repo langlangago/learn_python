@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>each循环示例</title>
+</head>
+<body>
+<div id="d1">1</div>
+<div id="d2">2</div>
+<div>3</div>
+<div>4</div>
+<div>5</div>
+<script src="jquery-3.4.1.min.js"></script>
+<script>
+    // each 循环遍历，this指向每个div
+    $("div").each(function () {
+        console.log(this.innerText)
+    })
+</script>
+</body>
+</html>

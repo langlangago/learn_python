@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu-Homework</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .left {
+            width: 20%;
+            background-color: grey;
+            height: 700px;
+        }
+
+        .menu-title {
+            text-align: center;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        .menu-items {
+            text-align: center;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+<div class="left">
+<div class="menu-title">Menu-1</div>
+<ul class="menu-items hide">
+    <li><a href="">111</a></li>
+    <li><a href="">222</a></li>
+    <li><a href="">333</a></li>
+</ul>
+<div class="menu-title">Menu-2</div>
+<ul class="menu-items hide">
+    <li><a href="">111</a></li>
+    <li><a href="">222</a></li>
+    <li><a href="">333</a></li>
+</ul>
+<div class="menu-title">Menu-3</div>
+<ul class="menu-items hide">
+    <li><a href="">111</a></li>
+    <li><a href="">222</a></li>
+    <li><a href="">333</a></li>
+</ul>
+</div>
+<script src="jquery-3.4.1.min.js"></script>
+<script>
+    // 设置menu-title的绑定事件click，每次点击都执行一次
+    $(".menu-title").click(function () {
+        // 方法1：先隐藏所有的.menu-items，再移除紧挨着当前点击title的items的hide类
+        // $(".menu-items").addClass("hide");
+        // $(this).next().removeClass("hide");
+        // 方法2：先移除当前点击位置的下一个ul的hide类，使显现。
+        // 再给其menu-items添加hide类，使隐藏，类似于强制关闭上次展开的ul。
+        // $(this).next().removeClass("hide");
+        // $(this).next().siblings(".menu-items").addClass("hide")
+        // 实现点击后就收起或者展开的效果
+        var $currMenuitem = $(this).next();
+        $(".menu-items").not($currMenuitem).addClass("hide");
+        $(this).next().toggleClass("hide");
+
+    })
+</script>
+</body>
+</html>

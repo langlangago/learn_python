@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改CSS样式</title>
+</head>
+<body>
+<p>Jerry</p>
+<p>Tom</p>
+<script src="jquery-3.4.1.min.js"></script>
+<script>
+    // method1
+    $("p").click(function () {
+    //     $(this).css("color", "red");
+    //     $(this).css("font-size", "29px");
+        // method2, use dict
+        $(this).css({"color": "green", "font-size": "38px"})
+    })
+</script>
+</body>
+</html>

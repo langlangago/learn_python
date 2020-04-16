@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Style-Handle-Example-JQuery</title>
+    <script src="jquery-3.4.1.min.js"></script>
+    <style>
+        .c1 {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: red;
+        }
+
+        .c2 {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div class="c1"></div>
+<script>
+    //Find Element
+    $(".c1").click(function () {
+        //console.log(this); //this DOM object
+        $(this).toggleClass("c2"); // Has remove, no add
+    })
+</script>
+</body>
+</html>

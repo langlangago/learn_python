@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--计时器事件，点start就在input框中显示时间，并且时间开始走起来，点stop时间停止 -->
+    <meta charset="UTF-8">
+    <title>timerExample</title>
+</head>
+<body>
+
+<label for="">
+    <input name="time" type="text" id="i1" value="">
+    <input name="start" type="button" value="Start" id="start">
+    <input name="stop" type="button" value="Stop" id="stop">
+    <script>
+        //声明全局变量t，用于后面停止定时执行函数后，清零定时器的编号t
+        var t;
+        //定义一个函数，将当前时间填入input输入框
+        function  foo() {
+            var i1Ele = document.getElementById("i1");
+            i1Ele.value = new Date().toLocaleString();
+        }
+        //把开始按钮绑定事件，每隔1s执行一次填当前时间的函数
+        var startEle = document.getElementById("start");
+        startEle.onclick = function () {
+            foo();
+            //每隔1s执行函数foo，每点一次click没执行一次setInterval
+            //定时器的编号都会加1，即多了一个定时器
+            if (t===undefined) {
+                t = setInterval(foo, 1000);
+            }
+        };
+        //把停止按钮绑定事件，结束定时任务的执行，编号t仍然在。
+        var stopEle = document.getElementById("stop");
+        stopEle.onclick = function () {
+            clearInterval(t);
+            //为了防止start那里启动多个定时器，要手动复原t的值，方便start判断。
+            t = undefined;
+        }
+    </script>
+</label>
+</body>
+</html>
